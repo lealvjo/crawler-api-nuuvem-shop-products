@@ -26,7 +26,7 @@ Corpo da Requisição:
         "product_price": "R$ 99,00"
         }
 
-### Obter todas as produto
+### Obter todos os produto
 
 URL: /product/all
 Método: GET
@@ -34,19 +34,19 @@ Descrição: Retorna uma lista com todos os produtos cadastrados no banco de dad
 
 ### Obter um produto pelo ID
 
-URL: /product/get-by-id/{shopId}
+URL: /product/get-by-id/{productId}
 Método: GET
 Descrição: Retorna os dados de um produto específico com base no seu ID.
 
 ### Excluir um produto pelo ID
 
-URL: /product/delete/{shopId}
+URL: /product/delete/{productId}
 Método: DELETE
 Descrição: Exclui um produto específico com base no seu ID.
 
 ### Atualizar um produto pelo ID
 
-URL: /product/update/{shopId}
+URL: /product/update/{productId}
 Método: PUT
 Descrição: Atualiza os dados de um produto específico com base no seu ID.
 Corpo da Requisição:
