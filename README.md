@@ -59,6 +59,32 @@ Corpo da Requisição:
         "product_price": 19.99
         }
 
+## Renderizando Todos os Produtos em um Modelo HTML Padrão
+
+Após inserir os jogos no sistema, é possível visualizar uma página HTML simples que exibe os produtos. Isso pode ser feito acessando o endpoint `/render-all-default-template` através de um navegador.
+
+### Acesso pelo Navegador
+
+Para visualizar a página HTML com os produtos, siga as etapas abaixo:
+
+1. Certifique-se de que o servidor da aplicação esteja em execução.
+
+2. Abra um navegador da sua preferência.
+
+3. Digite a URL completa do endpoint `/render-all-default-template` no navegador.
+
+   Exemplo: [http://localhost:8080/render-all-default-template](http://localhost:8080/render-all-default-template)
+
+4. Pressione Enter para enviar a requisição GET.
+
+5. O navegador exibirá a página HTML renderizada, contendo os produtos.
+
+Observação: Certifique-se de que o arquivo de modelo HTML (`nuuvem-shop-all-products-default-template.html`) esteja localizado no diretório `static` dos recursos da sua aplicação.
+
+Certifique-se de ajustar as instruções de acordo com a estrutura e a localização específica da sua aplicação.
+
+![Exemplo](src/main/resources/list-all-products.PNG)
+
 ## Requisitos
 
 Certifique-se de ter as seguintes dependências no seu ambiente de desenvolvimento:

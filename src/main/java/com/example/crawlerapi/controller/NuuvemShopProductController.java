@@ -5,10 +5,17 @@ import com.example.crawlerapi.model.NuuvemShopProductModel;
 import com.example.crawlerapi.service.NuuvemShopProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -76,6 +83,22 @@ public class NuuvemShopProductController {
             nuuvemShopProductService.updateNuuvemShopProduct(product);
 
             return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/render-all-default-template")
+    public ResponseEntity<String> renderNuuvemShopAllProductsDefaultTemplate() throws IOException {
+        Resource resource = new ClassPathResource("static/nuuvem-shop-all-products-default-template.html");
+
+        if (resource.exists()) {
+            Path filePath = resource.getFile().toPath();
+            String html = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_HTML)
+                    .body(html);
         } else {
             return ResponseEntity.notFound().build();
         }
