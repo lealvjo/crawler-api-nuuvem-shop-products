@@ -80,6 +80,27 @@ Para importar o arquivo no Postman, siga as etapas abaixo:
 
 Certifique-se de ajustar as informações, como URL base e dados da requisição, conforme necessário para o seu ambiente.
 
+## Acesso ao Banco de Dados H2
+
+Durante o desenvolvimento deste projeto, foi utilizado o banco de dados H2 em memória. Caso você queira validar ou consultar os dados armazenados no banco, você pode acessar o console do H2.
+
+### Passos para acessar o console do H2:
+
+1. Certifique-se de que o aplicativo esteja em execução.
+
+2. Abra um navegador da web e acesse o seguinte endereço: [http://localhost:8080/h2](http://localhost:8080/h2).
+
+3. Na página de login do H2 Console, deixe os campos conforme abaixo:
+    - **JDBC URL**: jdbc:h2:file:~/example
+    - **Username**: user
+    - **Password**: password
+
+4. Clique no botão "Connect" para efetuar login no console do H2.
+
+Após efetuar o login, você terá acesso ao console do H2, onde poderá explorar o banco de dados, executar consultas SQL e realizar outras operações de gerenciamento do banco de dados.
+
+Lembre-se de que o acesso ao console do H2 geralmente é habilitado apenas em ambientes de desenvolvimento. Certifique-se de proteger adequadamente o acesso ao console em um ambiente de produção para evitar possíveis problemas de segurança.
+
 ## Contribuição
 
 Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novos recursos para esta API. Basta fazer um fork
