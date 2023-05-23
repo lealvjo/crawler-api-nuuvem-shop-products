@@ -83,8 +83,6 @@ Observação: Certifique-se de que o arquivo de modelo HTML (`nuuvem-shop-all-pr
 
 Certifique-se de ajustar as instruções de acordo com a estrutura e a localização específica da sua aplicação.
 
-![Exemplo](src/main/resources/list-all-products.PNG)
-
 ## Requisitos
 
 Certifique-se de ter as seguintes dependências no seu ambiente de desenvolvimento:
