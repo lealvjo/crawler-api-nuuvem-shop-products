@@ -88,7 +88,7 @@ public class NuuvemShopProductController {
         }
     }
 
-    @GetMapping("/render-all-default-template")
+    @GetMapping("/render-all-products-default-template")
     public ResponseEntity<String> renderNuuvemShopAllProductsDefaultTemplate() throws IOException {
         Resource resource = new ClassPathResource("static/nuuvem-shop-all-products-default-template.html");
 

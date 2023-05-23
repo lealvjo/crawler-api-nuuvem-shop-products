@@ -71,9 +71,9 @@ Para visualizar a página HTML com os produtos, siga as etapas abaixo:
 
 2. Abra um navegador da sua preferência.
 
-3. Digite a URL completa do endpoint `/render-all-default-template` no navegador.
+3. Digite a URL completa do endpoint `/render-all-products-default-template` no navegador.
 
-   Exemplo: [http://localhost:8080/render-all-default-template](http://localhost:8080/render-all-default-template)
+   Exemplo: [http://localhost:8080/render-all-products-default-template](http://localhost:8080/render-all-products-default-template)
 
 4. Pressione Enter para enviar a requisição GET.
 
