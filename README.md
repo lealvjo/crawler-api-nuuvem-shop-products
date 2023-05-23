@@ -61,7 +61,7 @@ Corpo da Requisição:
 
 ## Renderizando Todos os Produtos em um Modelo HTML Padrão
 
-Após inserir os produtos no sistema, é possível visualizar uma página HTML simples que exibe os produtos. Isso pode ser feito acessando o endpoint `/render-all-default-template` através de um navegador.
+Após inserir os produtos no sistema, é possível visualizar uma página HTML simples que exibe os produtos. Isso pode ser feito acessando o endpoint `/product/render-all-products-default-template` através de um navegador.
 
 ### Acesso pelo Navegador
 
