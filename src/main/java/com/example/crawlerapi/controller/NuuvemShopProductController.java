@@ -29,7 +29,7 @@ public class NuuvemShopProductController {
 
     @GetMapping("/run-crawler")
     public ResponseEntity<List<NuuvemShopProductModel>> runCrawlerNuuvemShopProduct() {
-        List<NuuvemShopProductModel> listShopProduct = nuuvemShopProductCrawler.getShopCollection();
+        List<NuuvemShopProductModel> listShopProduct = nuuvemShopProductCrawler.getShopProductsCollection();
         for (NuuvemShopProductModel product : listShopProduct) {
             NuuvemShopProductModel crawlerNuuvemShopProductModel = new NuuvemShopProductModel(
                     product.getProductName(),
