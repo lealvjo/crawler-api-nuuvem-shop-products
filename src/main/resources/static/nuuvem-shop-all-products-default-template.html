@@ -87,9 +87,18 @@
 </table>
 
 <script>
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', searchProducts);
+
   function searchProducts() {
-    const searchValue = document.getElementById('searchInput').value;
-    const url = `http://localhost:8080/product/get-by-name/${encodeURIComponent(searchValue)}`;
+    const searchValue = searchInput.value;
+    let url;
+
+    if (searchValue === '') {
+      url = 'http://localhost:8080/product/all';
+    } else {
+      url = `http://localhost:8080/product/get-by-name/${encodeURIComponent(searchValue)}`;
+    }
 
     // Limpa a tabela antes de realizar uma nova pesquisa
     const table = document.getElementById('productTable');
