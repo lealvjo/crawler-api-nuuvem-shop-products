@@ -43,10 +43,38 @@
       display: block;
       margin: 0 auto;
     }
+
+    .search-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      padding: 5px;
+      width: 300px;
+      border-radius: 4px;
+      border: 1px solid #dddddd;
+    }
+
+    .search-button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 <h1>Lista de Produtos</h1>
+
+<!-- Campo de pesquisa -->
+<div class="search-container">
+  <input type="text" id="searchInput" class="search-input" placeholder="Digite o nome do produto">
+  <button onclick="searchProducts()" class="search-button">Pesquisar</button>
+</div>
+
 <table id="productTable">
   <tr>
     <th>ID</th>
@@ -59,45 +87,96 @@
 </table>
 
 <script>
-  // Faz uma requisição GET para a rota /all para obter a lista de produtos
-  fetch('http://localhost:8080/product/all')
-      .then(response => response.json())
+  function searchProducts() {
+    const searchValue = document.getElementById('searchInput').value;
+    const url = `http://localhost:8080/product/get-by-name/${encodeURIComponent(searchValue)}`;
+
+    // Limpa a tabela antes de realizar uma nova pesquisa
+    const table = document.getElementById('productTable');
+    table.innerHTML = '';
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao pesquisar produtos');
+        }
+        return response.json();
+      })
       .then(data => {
-          // Obtém a tabela onde os dados serão exibidos
-          const table = document.getElementById('productTable');
+        if (data.length === 0) {
+          const row = table.insertRow();
+          const messageCell = row.insertCell();
+          messageCell.colSpan = 6;
+          messageCell.textContent = 'Nenhum produto encontrado';
+        } else {
+          for (const product of data) {
+            const row = table.insertRow();
+            const idCell = row.insertCell();
+            idCell.textContent = product.id;
 
-          // Preenche a tabela com os dados retornados pela API
-          data.forEach(product => {
-              const row = table.insertRow();
+            const nameCell = row.insertCell();
+            nameCell.textContent = product.product_name;
 
-              const idCell = row.insertCell();
-              idCell.textContent = product.id;
+            const linkCell = row.insertCell();
+            const link = document.createElement('a');
+            link.href = product.product_link;
+            link.textContent = product.product_link;
+            linkCell.appendChild(link);
 
-              const nameCell = row.insertCell();
-              nameCell.textContent = product.product_name;
+            const photoCell = row.insertCell();
+            const image = document.createElement('img');
+            image.src = product.product_pht;
+            image.alt = 'Product Image';
+            photoCell.appendChild(image);
 
-              const linkCell = row.insertCell();
-              const link = document.createElement('a');
-              link.href = product.product_link;
-              link.textContent = product.product_link;
-              linkCell.appendChild(link);
+            const pageCell = row.insertCell();
+            pageCell.textContent = product.product_page;
 
-              const photoCell = row.insertCell();
-              const image = document.createElement('img');
-              image.src = product.product_pht;
-              image.alt = 'Product Image';
-              photoCell.appendChild(image);
-
-              const pageCell = row.insertCell();
-              pageCell.textContent = product.product_page;
-
-              const priceCell = row.insertCell();
-              priceCell.textContent = product.product_price;
-          });
+            const priceCell = row.insertCell();
+            priceCell.textContent = product.product_price;
+          }
+        }
       })
       .catch(error => {
-          console.error('Erro ao obter a lista de produtos:', error);
+        console.error('Erro ao pesquisar produtos:', error);
       });
+  }
+
+  // Carrega todos os produtos ao carregar a página
+  fetch('http://localhost:8080/product/all')
+    .then(response => response.json())
+    .then(data => {
+      const table = document.getElementById('productTable');
+      data.forEach(product => {
+        const row = table.insertRow();
+        const idCell = row.insertCell();
+        idCell.textContent = product.id;
+
+        const nameCell = row.insertCell();
+        nameCell.textContent = product.product_name;
+
+        const linkCell = row.insertCell();
+        const link = document.createElement('a');
+        link.href = product.product_link;
+        link.textContent = product.product_link;
+        linkCell.appendChild(link);
+
+        const photoCell = row.insertCell();
+        const image = document.createElement('img');
+        image.src = product.product_pht;
+        image.alt = 'Product Image';
+        photoCell.appendChild(image);
+
+        const pageCell = row.insertCell();
+        pageCell.textContent = product.product_page;
+
+        const priceCell = row.insertCell();
+        priceCell.textContent = product.product_price;
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao obter a lista de produtos:', error);
+    });
 </script>
 </body>
 </html>

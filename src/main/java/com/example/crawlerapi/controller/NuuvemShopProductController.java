@@ -64,6 +64,16 @@ public class NuuvemShopProductController {
         }
     }
 
+    @GetMapping("/get-by-name/{productName}")
+    public ResponseEntity<List<NuuvemShopProductModel>> getNuuvemShopProductsByName(@PathVariable String productName) {
+        List<NuuvemShopProductModel> products = nuuvemShopProductService.getNuuvemShopProductsByName(productName);
+        if (!products.isEmpty()) {
+            return ResponseEntity.ok().body(products);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/delete/{productId}")
     public ResponseEntity deleteNuuvemShopProductById(@PathVariable long productId) {
         nuuvemShopProductService.deleteNuuvemShopProductById(productId);
